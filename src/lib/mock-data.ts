@@ -17,7 +17,24 @@ export const MOCK_LEGAL_RESPONSE = {
   ]
 };
 
+export const MOCK_PAST_PAPER_RESPONSE = {
+  answer: [
+    "Question Analysis: You are asking about Question 3 from the University of Nairobi 2022 Tort Law Examination regarding sports injuries.",
+    "",
+    "Rule: The defense of 'volenti non fit injuria' (voluntary assumption of risk) applies when a person knowingly and voluntarily accepts the risk of harm. In Kenyan sports law, this is often cited in cases where spectators or players are injured during the normal course of a game.",
+    "",
+    "Application: According to the 2022 UoN Exam Guidelines, a student must demonstrate that the plaintiff was aware of the specific risk and consented to it either expressly or by implication through participation.",
+    "",
+    "Conclusion: For injuries sustained within the rules of the sport, the defense typically succeeds. However, it does not cover reckless or intentional foul play outside the standard rules of the game."
+  ].join(nl),
+  sources: [
+    "UoN_Tort_Law_Exam_2022.pdf",
+    "Kenya_Sports_Act_Notes.pdf",
+    "Wanyama v Athletics Kenya [2018] eKLR.pdf"
+  ]
+};
+
 export const MOCK_NO_DATA_RESPONSE = {
-  answer: "I do not have the specific Kenyan case law or statute for this in the current database.",
+  answer: "I do not have the specific Kenyan case law, statute, or past paper reference for this in the current database.",
   sources: []
 };

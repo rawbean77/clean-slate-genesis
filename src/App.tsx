@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { AnalysisResult } from "./components/AnalysisResult";
 import { SystemStatusSidebar } from "./components/SystemStatusSidebar";
-import { MOCK_LEGAL_RESPONSE } from "./lib/mock-data";
+import { MOCK_LEGAL_RESPONSE, MOCK_PAST_PAPER_RESPONSE } from "./lib/mock-data";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -26,9 +26,15 @@ function App() {
 
     // Simulate AI processing
     setTimeout(() => {
-      setResult(MOCK_LEGAL_RESPONSE);
+      // Determine which mock response to show
+      if (query.toLowerCase().includes("past paper") || query.toLowerCase().includes("uon") || query.toLowerCase().includes("tort")) {
+        setResult(MOCK_PAST_PAPER_RESPONSE);
+      } else {
+        setResult(MOCK_LEGAL_RESPONSE);
+      }
+      
       setIsAnalyzing(false);
-      toast.success("Analysis complete based on eKLR records.");
+      toast.success("Analysis complete based on eKLR and University records.");
     }, 2500);
   };
 
@@ -66,7 +72,7 @@ function App() {
             <p className="text-xl text-slate-600 max-w-2xl mx-auto font-medium">
               Your intelligent Kenyan Law study companion. 
               <span className="block text-sm font-normal text-muted-foreground mt-2">
-                Search across eKLR judgments, university past papers, and statutes.
+                Now indexing: eKLR judgments, <strong>University Past Papers</strong>, and Kenyan Statutes.
               </span>
             </p>
           </div>
@@ -85,7 +91,7 @@ function App() {
                 
                 <div className="space-y-4">
                   <Textarea
-                    placeholder="Enter a legal concept, case name, or past paper question (e.g., 'What are the elements of a controlled tenancy in Kenya?')"
+                    placeholder="Enter a legal concept, case name, or past paper question (e.g., 'Discuss Question 3 from the UoN 2022 Tort Law paper')"
                     className="min-h-[160px] text-lg resize-none border-border/60 focus:ring-primary/40 focus:border-primary/40 rounded-xl bg-slate-50/50"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -101,7 +107,7 @@ function App() {
                       {isAnalyzing ? (
                         <>
                           <Loader2 className="w-5 h-5 animate-spin" />
-                          Searching eKLR Database...
+                          Searching Global Database...
                         </>
                       ) : (
                         <>
@@ -112,7 +118,7 @@ function App() {
                     
                     <div className="flex items-center gap-2 text-xs text-muted-foreground px-3 py-2 bg-slate-100/50 rounded-full border border-slate-200/50">
                       <Info className="w-4 h-4" />
-                      Uses GPT-4o with retrieval-augmented generation
+                      Includes University Exam Papers & Scholar Notes
                     </div>
                   </div>
                 </div>
@@ -144,7 +150,7 @@ function App() {
               <span className="font-bold tracking-widest text-xs uppercase">SheriaHelp AI</span>
             </div>
             <p className="text-[10px] text-slate-500 max-w-md mx-auto leading-relaxed">
-              Disclaimer: SheriaHelp is an educational revision tool. While it uses official Kenyan Law context, always consult primary legal sources and certified advocates for formal legal advice.
+              Disclaimer: SheriaHelp is an educational revision tool. Now featuring university-specific exam resources and study materials.
             </p>
           </div>
         </footer>
